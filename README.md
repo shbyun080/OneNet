@@ -3,7 +3,7 @@
 This repository serves as the official codebase for the paper:
 > **OneNet: A Channel-Wise 1D Convolutional U-Net**
 >
-> [Sanghyun Byun](https://shbyun080.github.io/), [Kayvan Shah](https://github.com/KayvanShah1), [Ayushi Gang](https://github.com/ayu-04), [Christopher Apton](https://github.com/chrisapton, Jacob Song and Woo Seong Chung)
+> [Sanghyun Byun](https://shbyun080.github.io/), [Kayvan Shah](https://github.com/KayvanShah1), [Ayushi Gang](https://github.com/ayu-04), [Christopher Apton](https://github.com/chrisapton), Jacob Song and Woo Seong Chung
 >
 > [arXiv:](/)
 
