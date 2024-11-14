@@ -3,12 +3,12 @@
 This repository serves as the official codebase for the paper:
 > **OneNet: A Channel-Wise 1D Convolutional U-Net**
 >
-> [Sanghyun Byun](https://shbyun080.github.io/), [Kayvan Shah](https://github.com/KayvanShah1), [Ayushi Gang](https://github.com/ayu-04), [Christopher Apton](https://github.com/chrisapton, Jacob Song, and Woo Seong Chung)
+> [Sanghyun Byun](https://shbyun080.github.io/), [Kayvan Shah](https://github.com/KayvanShah1), [Ayushi Gang](https://github.com/ayu-04), [Christopher Apton](https://github.com/chrisapton, Jacob Song and Woo Seong Chung)
 >
 > [arXiv:](/)
 
 ### About
-1D convolutional encoder that retains U-Net’s accuracy while enhancing its suitability for edge applications by havling the model parameters.
+Channel-Wise 1D convolutional encoder that retains U-Net’s accuracy while enhancing its suitability for edge applications by halving the model parameters.
 
 ## 🚧 Roadmap
 11/7/2024: Project Repo Initialized
@@ -25,8 +25,8 @@ If you find our work useful in your research, please consider citing our paper:
 @misc{onenet-2024,
   title={OneNet: A Channel-Wise 1D Convolutional U-Net},
   author={Sanghyun Byun and Kayvan Shah and Ayushi Gang and Christopher Apton and Jacob Song and Woo Seong Chung},
-  archivePrefix={arXiv:},
-  eprint={},
+  archivePrefix={arXiv},
+  eprint={:},
   primaryClass={cs.CV},
   url={https://arxiv.org/abs/}, 
   month={November},
@@ -39,6 +39,8 @@ If you find our work useful in your research, please consider citing our paper:
 3. [Kayvan Shah](https://github.com/KayvanShah1) | `MS in Applied Data Science @ USC`
 2. [Ayushi Gang](https://github.com/ayu-04) | `MS in Computer Science @ USC`
 4. [Christopher Apton](https://github.com/chrisapton) | `MS in Applied Data Science @ USC`
+5. Jacob Song | `Principal Researcher @ LG Electronics`
+6. Woo Seong Chung | `Principal Researcher @ LG Electronics`
 
 ### Acknowledgement
 We thank `Professor Yan Liu` at the `University of Southern California` for guidance.
