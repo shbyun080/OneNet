@@ -1,5 +1,7 @@
 # OneNet: A Channel-Wise 1D Convolutional U-Net
 
+**Repository will be updated soon**
+
 This repository serves as the official codebase for the paper:
 > **OneNet: A Channel-Wise 1D Convolutional U-Net**
 >
