@@ -42,7 +42,7 @@ For development use, do an editable installation locally to avoid importing issu
 pip install -e . --extra-index-url https://download.pytorch.org/whl/cu121
 ```
 
-### Dataset
+## 📦 Dataset
 - MSD Brain/Heart/Lung
 - Oxford PET
 - Pascal VOC
