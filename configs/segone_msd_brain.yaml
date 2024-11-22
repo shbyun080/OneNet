@@ -1,0 +1,32 @@
+model:
+  name: SEGONE
+  type: segmentation
+  channel_in: 3
+  channel_out: 4
+  num_layers: 4
+  kernel_size: 9
+  bottleneck_repeat: 2
+  bottleneck_channel: 64
+
+data:
+  name: BRAIN
+  datapath: data/msd_brain
+  train: train
+  val: val
+  resolution:
+    - 256
+    - 256
+
+train:
+  cuda: true
+  epoch: 200
+  learning_rate: 0.0001
+  lr_step: 20
+  batch_size: 32
+  num_workers: 4
+  save_dir: exps
+  load_weights: null
+  load_optimizer: null
+  load_encoder: null
+  save_frequency: 5
+  patience: 5
