@@ -1,5 +1,4 @@
 import argparse
-import os
 from collections import defaultdict
 
 import torch
@@ -7,13 +6,10 @@ from ruamel.yaml import YAML
 from tqdm import tqdm
 
 from datasets.dataloaders import create_dataloader
-from OneNet.onenet.networks.onenet_network import OneNet
+from onenet.networks.onenet_network import OneNet
 from onenet.utils.eval import Evaluator
 
-available_models = {
-    "SEGONE": OneNet,
-    "ONENET": OneNet
-}
+available_models = {"SEGONE": OneNet, "ONENET": OneNet}
 
 
 def evaluate_network(cfg, cuda_num):
@@ -72,7 +68,7 @@ def evaluate_network(cfg, cuda_num):
         for inputs in tqdm(val_loader):
             results = process_batch(inputs)
             for metric, value in results.items():
-                if type(value) == torch.Tensor:
+                if isinstance(value, torch.Tensor):
                     value = float(torch.mean(value))
                 total_results[metric] += value
             counter += 1
