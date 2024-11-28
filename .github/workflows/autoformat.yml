@@ -1,0 +1,79 @@
+name: Autoformat Code on Push
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch accordingly
+  pull_request:
+    branches:
+      - main  # Adjust the branch accordingly
+
+permissions:
+    checks: write
+    actions: read
+    contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    env:
+      commit_message: "No formatting changes applied"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token to push changes
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'  # Adjust to your Python version
+  
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r dev-requirements.txt
+
+      - name: Check import sorting with isort
+        id: isort-check
+        run: |
+          isort --check-only .
+        continue-on-error: true
+
+      - name: Format imports with isort
+        if: steps.isort-check.outcome == 'failure'
+        run: |
+          isort .
+
+      - name: Check code formatting with Black
+        id: black-check
+        run: |
+          black --line-length=120 --preview --enable-unstable-feature=string_processing --check . 
+        continue-on-error: true
+
+      - name: Format code with Black
+        if: steps.black-check.outcome == 'failure'
+        run: |
+          black --line-length=120 --preview --enable-unstable-feature=string_processing .
+      
+      - name: Set commit message
+        id: set-message
+        run: |
+          if [[ "${{ steps.isort-check.outcome }}" == "failure" && "${{ steps.black-check.outcome }}" == "failure" ]]; then
+            echo "commit_message=Sorted imports with isort & Autoformat code with Black" >> $GITHUB_ENV
+          elif [[ "${{ steps.isort-check.outcome }}" == "failure" ]]; then
+            echo "commit_message=Sorted imports with isort" >> $GITHUB_ENV
+          elif [[ "${{ steps.black-check.outcome }}" == "failure" ]]; then
+            echo "commit_message=Autoformat code with Black" >> $GITHUB_ENV
+          fi
+
+      - name: Commit and push changes if formatting is applied
+        if: steps.isort-check.outcome == 'failure' || steps.black-check.outcome == 'failure'
+        run: |
+            git config --local user.name "github-actions[bot]"
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git add .
+            git commit -m "${{ env.commit_message }}"
+            git push origin ${{ github.ref }}
