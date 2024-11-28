@@ -1,12 +1,7 @@
 import torch
 import torch.nn as nn
 
-from onenet.utils.layers import (
-    Conv1DBlock,
-    PixelShuffle,
-    channel_recover,
-    spatial_flatten,
-)
+from onenet.utils.layers import Conv1DBlock, PixelShuffle, channel_recover, spatial_flatten
 
 
 class OneDecoder(nn.Module):

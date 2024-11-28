@@ -1,11 +1,6 @@
 import torch.nn as nn
 
-from onenet.utils.layers import (
-    Conv1DBlock,
-    PixelUnshuffle,
-    channel_recover,
-    spatial_flatten,
-)
+from onenet.utils.layers import Conv1DBlock, PixelUnshuffle, channel_recover, spatial_flatten
 
 
 class Bottleneck(nn.Module):
