@@ -1,0 +1,95 @@
+[build-system]
+requires = ["setuptools>=64", "wheel", "versioneer[toml]"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "onenet"
+description = "Official Implementation of OneNet"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = { file="LICENSE" }
+authors = [
+    {name = "Sanghyun Byun"},
+    {name = "Kayvan Shah"},
+    {name = "Ayushi Gang"},
+    {name = "Christopher Apton"}
+]
+maintainers = [
+    {name = "Sanghyun Byun"}, 
+    {name = "Kayvan Shah"}
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+    "Topic :: Scientific/Engineering :: Deep Learning :: Computer Vision",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Natural Language :: English"
+]
+keywords = [
+    "segone", "segmentation", "deep learning", "computer vision", 
+    "pytorch", "torch", "torchvision", 
+    "segmentation models", "segmentation networks",
+    "segmentation architectures", "segmentation algorithms",
+    "segmentation losses", "segmentation metrics",
+    "segmentation datasets", "segmentation training",
+    "segmentation inference", "segmentation evaluation",
+    "segmentation visualization"
+]
+requires-python = ">= 3.12"
+dynamic = ["dependencies", "version"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+optional-dependencies = {dev = { file = ["dev-requirements.txt"] }}
+
+[tool.flake8]
+max-line-length = 120
+exclude = [
+    # No need to traverse our git directory
+    ".git",
+    # There's no value in checking cache directories
+    "__pycache__"
+]
+ignore = [
+    "E402",
+    "E302",
+    "E305",
+    "E266",
+    "E203",
+    "W503",
+    "W504",
+    "E722",
+    "E712",
+    "E721",
+    "E713",
+    "E714",
+    "E731"
+]
+
+[project.urls]
+Repository = "https://github.com/shbyun080/OneNet"
+arXiv = "https://arxiv.org/abs/2411.09838"
+
+[tool.black]
+line-length = 120
+preview = true
+enable-unstable-feature = ["string_processing"]
+
+[tool.isort]
+line_length = 120
+profile = "black"
+
+[tool.versioneer]
+VCS = "git"
+style = "pep440"
+versionfile_source = "onenet/_version.py"
+versionfile_build = "onenet/_version.py"
+tag_prefix = "v"
+parentdir_prefix = "onenet-"
