@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from onenet.utils.common_layers import Conv3x3, ConvBlock, UpSample, upsample
+from onenet.utils.common_layers import Conv3x3, ConvBlock, UpSample
 
 
 class CommonSegDecoder(nn.Module):
