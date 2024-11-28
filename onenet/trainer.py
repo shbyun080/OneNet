@@ -13,15 +13,12 @@ from tensorboardX import SummaryWriter
 from tqdm import tqdm
 
 from datasets.dataloaders import create_dataloader
-from OneNet.onenet.networks.onenet_network import OneNet
+from onenet.networks.onenet_network import OneNet
 
 
 class Trainer:
     available_datasets = ("COCO", "VOC", "PET", "PET2", "BRAIN", "HEART", "SPLEEN", "LUNG")
-    available_models = {
-        "SEGONE": OneNet,
-        "ONENET": OneNet
-    }
+    available_models = {"SEGONE": OneNet, "ONENET": OneNet}
 
     def __init__(self, opts, cuda):
         self.data_opts = opts["data"]
@@ -146,7 +143,7 @@ class Trainer:
                 print(f"Best val loss at {val_losses}")
             else:
                 counter += 1
-                print(f"Val loss not improved. Patience: {patience-counter}")
+                print(f"Val loss not improved. Patience: {patience - counter}")
 
             if counter >= patience:
                 self.model.load_state_dict(best_model_weights)
