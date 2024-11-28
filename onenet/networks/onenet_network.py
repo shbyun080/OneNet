@@ -1,10 +1,7 @@
-import time
-
-import torch
 import torch.nn as nn
 
 from onenet.networks.decoders.common_decoder_seg import CommonSegDecoder
-from OneNet.onenet.networks.decoders.onenet_decoder_seg import OneDecoder
+from onenet.networks.decoders.onenet_decoder_seg import OneDecoder
 from onenet.networks.encoders.one_encoder import OneEncoder
 
 
