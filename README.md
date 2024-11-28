@@ -24,7 +24,7 @@ Environment (model has not been tested on other environments)
 Please set the environment with
 ```bash
 export VENV_DIR=<YOUR-VENV>
-export NAME=SegOne
+export NAME=OneNet
 
 python -m venv $VENV_DIR/$NAME
 source $VENV_DIR/$NAME/bin/activate
@@ -32,7 +32,7 @@ source $VENV_DIR/$NAME/bin/activate
 
 For general use
 ```bash
-pip install -r requirements.txt
+pip install .
 ```
 
 For development use, do an editable installation locally to avoid importing issues
