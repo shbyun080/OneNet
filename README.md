@@ -8,7 +8,8 @@ This repository serves as the official codebase for the paper:
 > [arXiv:2411.09838](https://arxiv.org/abs/2411.09838)
 
 ### Video Presentation
-Watch the full presentation on **OneNet** (Presented at the `2025 IEEE International Conference on Image Processing, Theory and Tools` (IPTA 2025)).
+The work was presented at the `2025 IEEE International Conference on Image Processing, Theory and Tools` (IPTA 2025)
+
 [Click here to watch the presentation](https://www.youtube.com/watch?v=ufhQdo-_Hh4) 
 
 ## About
