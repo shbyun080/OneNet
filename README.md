@@ -7,15 +7,42 @@ This repository serves as the official codebase for the paper:
 >
 > [arXiv:2411.09838](https://arxiv.org/abs/2411.09838)
 
-### About
-Channel-Wise 1D convolutional encoder that retains U-Net’s accuracy while enhancing its suitability for edge applications by halving the model parameters.
+## Video Presentation
+Watch the full presentation on **OneNet** (Presented at the `2025 IEEE International Conference on Image Processing, Theory and Tools` (IPTA 2025)).
+[Click here to watch the presentation](https://www.youtube.com/watch?v=ufhQdo-_Hh4) 
 
-## 🚧 Roadmap
-11/7/2024: Project Repo Initialized
+## About
+OneNet is a streamlined alternative to traditional U-Net architectures, specifically designed to address the significant computational demands of multi-resolution convolutional models that often limit deployment on edge devices.
 
-11/22/2024: Initial Model Code Uploaded
+### Core Architectural Innovation
 
-## ⚙️ Installation
+OneNet replaces the standard 2D convolutions typically used in the U-Net backbone with a novel convolution block that relies solely on **1D convolutions**.
+
+This efficiency is achieved by leveraging specialized pixel-repositioning techniques inspired by image super-resolution tasks:
+
+1.  **Downscaling:** The encoder block utilizes **pixel-unshuffle downscaling (PUD)** instead of max pooling. This operation transfers spatial knowledge to the channel axis, allowing subsequent **channel-wise 1D convolutions** to effectively capture spatial and channel relationships while reducing computational complexity.
+2.  **Upscaling:** The decoder block utilizes **pixel-shuffle upscaling (PSU)**, which moves information from the channel dimension back to the spatial dimension.
+
+This channel-wise 1D approach avoids the computational overhead associated with traditional 2D convolutions, making the model suitable for lightweight deployment.
+
+### Quantified Efficiency Gains
+
+OneNet provides substantial reductions in both parameters and computational load, demonstrating its feasibility for resource-constrained environments. (Metrics shown are for the 4-layer variant, using a sample tensor of size (1, 3, 256, 256) for comparison against baselines):
+
+| Replacement Type | Model Size Reduction | Model Size (`OneNet_{ed,4}`) | Parameters (`OneNet_{ed,4}`) | FLOPs (`OneNet_{ed,4}`) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Encoder-only** (`OneNet_{e,4}`) | Up to **47%** reduction in parameters | 65.42 MB | 16.39M | 78.42 GB |
+| **Encoder + Decoder (Fully 1D)** | Up to **71%** reduction in size | **36.30 MB** (below 40MB) | **9.08M** (69% reduction) | **22.92 GB** (78% reduction in FLOPs) |
+
+## Performance Summary and Trade-Offs
+
+OneNet is highly effective for tasks focused on local feature detection.
+
+*   **High Accuracy Retention:** The architecture **preserves accuracy effectively** and performs **on par** with established baseline architectures for medical tumor detection datasets (e.g., MSD Heart, Brain, Lung). For instance, on the MSD Heart dataset, OneNet showed a slight edge in accuracy, achieving a 2% improvement over baselines, while simultaneously achieving a 47% reduction in parameters.
+*   **Optimal Use Case:** OneNet excels in mask-generating tasks that are **local-feature-centric** or involve small segmentation mask counts.
+*   **Trade-Offs:** The full 1D encoder-decoder structure (`OneNet_{ed,4}`) shows an expected drop in accuracy (11% to 15%) on general multi-class segmentation datasets (like PASCAL VOC and full Oxford Pet), highlighting a necessary trade-off for achieving significant resource reduction required for edge deployment.
+
+## Installation
 Environment (model has not been tested on other environments)
 - Linux
 - Python 3.12
@@ -40,13 +67,13 @@ For development use, do an editable installation locally to avoid importing issu
 pip install -e . --extra-index-url https://download.pytorch.org/whl/cu121
 ```
 
-## 📦 Dataset
+## Dataset
 - MSD Brain/Heart/Lung
 - Oxford PET
 - Pascal VOC
 - COCO
 
-## 📜 Citation
+## Citation
 If you find our work useful in your research, please consider citing our paper:
 ```bibtex
 @misc{onenet-2024,
@@ -72,7 +99,7 @@ If you find our work useful in your research, please consider citing our paper:
 ### Acknowledgement
 We thank `Professor Yan Liu` at the `University of Southern California` for guidance.
 
-## 🪪 LICENSE
+## LICENSE
 This project is licensed under the `CC-BY-4.0` License. See the [LICENSE](LICENSE) file for details.
 
 #### Disclaimer
